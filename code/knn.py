@@ -28,7 +28,7 @@ class KNN:
         ##Initialize Kdtree
         self.kdtree=None
         
-    def train(self,X,y):
+    def fit(self,X,y):
         '''
         INPUT :
         - X : is a 2D NxD numpy array containing the coordinates of points
@@ -45,7 +45,7 @@ class KNN:
                 self.y[self.y==self.labels[1]] = 1
         self.kdtree=cKDTree(np.copy(X))
        
-    def predict(self,X_new,p):
+    def predict(self,X_new):
         '''
         INPUT :
         - X_new : is a MxD numpy array containing the coordinates of new points whose label has to be predicted
@@ -76,3 +76,5 @@ class KNN:
         '''
         dst=distance_matrix(X_new,self.X,p)
         return dst
+    def get_params(self, deep=True):
+        return {"k": self.k}
