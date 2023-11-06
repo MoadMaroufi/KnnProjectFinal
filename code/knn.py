@@ -27,7 +27,8 @@ class KNN:
 
         ##Initialize Kdtree
         self.kdtree=None
-        
+
+    ###Renamed train to fit because Sklearn cross validation requires this convention
     def fit(self,X,y):
         '''
         INPUT :
@@ -55,6 +56,7 @@ class KNN:
         ''' 
         _, indices = self.kdtree.query(X_new, k=self.k)
         neighbor_labels = self.y[indices]
+
         if len(self.labels==2):
             # Summing neighbor labels
             sum_labels = np.sum(neighbor_labels, axis=1)
@@ -76,5 +78,7 @@ class KNN:
         '''
         dst=distance_matrix(X_new,self.X,p)
         return dst
+    
+    ###Added a function get_params  because Sklearn cross validation requires this convention
     def get_params(self, deep=True):
         return {"k": self.k}
